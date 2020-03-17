@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://kit.fontawesome.com/c2035ffa68.js" crossorigin="anonymous"></script>
+    <title>List of companies</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <a class="navbar-brand" href="">App Name</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-expanded="false"
+        aria-controls="#navbarTogglerDemo02" aria-label="Togglenavigation"><span class="navbar-toggler-icon"></span>
+         </button>
+  
+         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+           <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item active"><a class="nav-link"  href="">User Name</a></li>
+              <li class="nav-item active"><a class="nav-link" href="">Logout</a></li>
+            </ul>
+         </div>  
+      </nav>
+
+      <section class="container">
+          <div class="row justify-content-center">
+              <div class="col-md-4">
+                <div class="card text-center" style="width: 18rem;">
+                    <img class="card-img-top" src="OCP.png" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">OCP</h5>
+                      <!-- <a href="#" id="a" class="btn btn-primary">Show details</a> -->
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Show detail</button>
+
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card text-center" style="width: 18rem;">
+                    <img class="card-img-top" src="OCP.png" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">OCP</h5>
+                      <a href="#" class="btn btn-primary">Show details</a>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card text-center" style="width: 18rem;">
+                    <img class="card-img-top" src="OCP.png" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">OCP</h5>
+                      <a href="#" class="btn btn-primary">Show details</a>
+                    </div>
+                  </div>
+              </div>
+        
+            
+              
+
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="text-center">
+                <button class="btn btn-primary" id="singlebutton"> Add company</button>
+              </div>
+            </div>
+          </div>
+        
+    </section>
+    
+    <section id="section2" class="section2 row d-flex justify-content-center">
+      <div class="description">
+          <p>Nom :Office chérifien des phosphates </p>
+          <p>Local : 2, rue Al Abtal, Hay Erraha Casablanca</p>
+          <p>Descrition : The OCP Group, founded on August 7, 1920 in Morocco and transformed into a 
+            limited company in 2008, is one of the leading exporters of phosphate rock, 
+            phosphoric acid and phosphate fertilizers in the world.</p>
+            <span>Departemnt </span> <select name="" id="">
+                <option value="">gfgf</option>
+            </select>
+        
+      </div>
+
+
+    </section>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new company</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Local:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Description:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Avatar</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">Add departement</button>
+        <button type="button" class="btn btn-primary">Add company</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ----------------------------------------------------------------- -->
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add departement</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Departement name:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+           
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">ADD</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
