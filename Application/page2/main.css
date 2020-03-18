@@ -10,9 +10,24 @@
 #singlebutton{
 	margin:  7% 0% 2% 0%;
 }
+#adddepartement{
+	margin:  7% 0% 2% 0%;
+
+}
 /* .section2{
 	visibility: hidden;
 } */
 .description{
 	width: 60%;
 }
+
+section{
+	height: 100vh;
+}
+#section2{
+	display: none;
+}
+.insection2{
+	padding: 6%;
+}
+
