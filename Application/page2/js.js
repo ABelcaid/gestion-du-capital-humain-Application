@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 $(document).ready(function(){
 
     $("#a").click(function() { 
@@ -8,3 +10,6 @@ $(document).ready(function(){
 
       
   });
+
+ 
+  
