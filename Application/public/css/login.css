@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+.I {
+  text-align: center;
+  font-size: 20px;
+  color: #007bff;
+  margin-right: 40px;
+}
+
+#nom {
+  padding: 10px 25px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+#email {
+  padding: 10px 25px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+#password {
+  padding: 10px 25px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+#confirmation {
+  padding: 10px 25px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+#insc {
+  padding: 13px 60px 13px 60px;
+  border-radius: 20px;
+  background-color: #007bff;
+}
+
+.TOI {
+  display: flex;
+  padding-bottom: -30px;
+}
+
+.grop {
+  width: 400px;
+  margin: 110px auto;
+}
+.mt-3 {
+  margin-top: -10px;
+  text-align: center;
+}
+#log {
+  color: dodgerblue;
+}
