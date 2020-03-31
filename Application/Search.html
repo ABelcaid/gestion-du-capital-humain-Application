@@ -1,84 +1,94 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <title>document</title>
-    <link rel="stylesheet" href="Css/Search.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Page Search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #result {
+            position: absolute;
+            width: 100%;
+            max-width: 870px;
+            cursor: pointer;
+            overflow-y: auto;
+            max-height: 400px;
+            box-sizing: border-box;
+            z-index: 1001;
+        }
+
+        .link-class:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
-
-<body>
-    <header>
-        <div class="logo">
-            <img src="Img/logo.png">
-
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1>GESTINO</h1>
+        <p>la gestion du capital humain des entreprises</p>
+    </div>
+</div>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Gestino</a>
         </div>
-    </header>
-    <input type="checkbox" id="check">
-    <label for="check">
-        <i class="fas fa-bars" id="btn"></i>
-        <i class="fas fa-times" id="cancel"></i>
-    </label>
-    <div class="sidebar">
-        <header>Menu</header>
-        <ul>
-            <li><a href="index.html"><i class="fas fa-qrcode"></i>Dashboard</a></li>
-            <li><a href="#"><i class="fas fa-link"></i>.......</a></li>
-            <li><a href="#"><i class="fas fa-stream"></i>login</a></li>
-            <li><a href="#"><i class="fas fa-calendar-week"></i>inscription</a></li>
-            <li><a href="#"><i class="far fa-question-circle"></i>le département</a></li>
-            <li><a href="#"><i class="fas fa-sliders-h"></i>chercher un salarié</a></li>
-            <li><a href="#"><i class="far fa-envelope"></i>Contact</a></li>
+        <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li ><a href="index.html">Page 3</a></li>
+            <li class="active"><a href="search.html">Page 4</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
     </div>
-  <div class="container">
-      <div class="row">
-          <div class="col-md-12">
-              <div class="input-group" id="adv-search">
-                  <input type="text" class="form-control" placeholder="Chercher un salarié" />
-                  <div class="input-group-btn">
-                      <div class="btn-group" role="group">
-                          <div class="dropdown dropdown-lg">
-                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                  aria-expanded="false"><span class="caret"></span></button>
-                              <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                  <form class="form-horizontal" role="form">
-                                      <div class="form-group">
-                                          <label for="filter">Filtrer par</label>
-                                          <select class="form-control">
-                                              <option value="0" selected>Tout</option>
-                                              <option value="1">Age</option>
-                                              <option value="2">Salaire</option>
-                                              <option value="3">Matricule</option>
-                                          </select>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="contain">Nom:</label>
-                                          <input class="form-control" type="text" />
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="contain">Prénom:</label>
-                                          <input class="form-control" type="text" />
-                                      </div>
-                                      <button type="submit" class="btn btn-primary"><span
-                                              class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                                  </form>
-                              </div>
-                          </div>
-                          <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"
-                                  aria-hidden="true"></span></button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  </div>
+</nav>
 
+<body>
+    <br /><br />
+    <div class="container" style="width:900px;">
+        <br /><br />
+        <div align="center">
+            <input type="text" name="search" id="search" placeholder="Search Employe" class="form-control" />
+        </div>
+        <ul class="list-group" id="result"></ul>
+        <br />
+    </div>
 </body>
 
 </html>
+
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            cache: false
+        });
+        $('#search').keyup(function () {
+            $('#result').html('');
+            $('#state').val('');
+            var searchField = $('#search').val();
+            var expression = new RegExp(searchField, "i");
+            $.getJSON('data.json', function (data) {
+                $.each(data.companies, function (key, value) {
+                    if (value.name.search(expression) != -1 || value.name2.search(
+                            expression) != -1) {
+                        $('#result').append(
+                            '<li class="list-group-item link-class">' +
+                            value.name + ' | <span class="text-muted">' + value
+                            .name2 + ' | <span class="text-muted">' + value
+                            .age +' | <span class="text-muted">' + value
+                                .slr + '</span></li>');
+                    }
+                });
+            });
+        });
+
+        $('#result').on('click', 'li', function () {
+            var click_text = $(this).text().split('|');
+            $('#search').val($.trim(click_text[0]));
+            $("#result").html('');
+        });
+    });
+</script>
