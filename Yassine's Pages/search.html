@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #result {
+            position: absolute;
+            width: 100%;
+            max-width: 870px;
+            cursor: pointer;
+            overflow-y: auto;
+            max-height: 400px;
+            box-sizing: border-box;
+            z-index: 1001;
+        }
+
+        .link-class:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1>GESTINO</h1>
+        <p>la gestion du capital humain des entreprises</p>
+    </div>
+</div>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Gestino</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li ><a href="index.html">Page 3</a></li>
+            <li class="active"><a href="search.html">Page 4</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<body>
+    <br /><br />
+    <div class="container" style="width:900px;">
+        <br /><br />
+        <div align="center">
+            <input type="text" name="search" id="search" placeholder="Search Employe" class="form-control" />
+        </div>
+        <ul class="list-group" id="result"></ul>
+        <br />
+    </div>
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            cache: false
+        });
+        $('#search').keyup(function () {
+            $('#result').html('');
+            $('#state').val('');
+            var searchField = $('#search').val();
+            var expression = new RegExp(searchField, "i");
+            $.getJSON('data.json', function (data) {
+                $.each(data.companies, function (key, value) {
+                    if (value.name.search(expression) != -1 || value.name2.search(
+                            expression) != -1) {
+                        $('#result').append(
+                            '<li class="list-group-item link-class">' +
+                            value.name + ' | <span class="text-muted">' + value
+                            .name2 + ' | <span class="text-muted">' + value
+                            .age +' | <span class="text-muted">' + value
+                                .slr + '</span></li>');
+                    }
+                });
+            });
+        });
+
+        $('#result').on('click', 'li', function () {
+            var click_text = $(this).text().split('|');
+            $('#search').val($.trim(click_text[0]));
+            $("#result").html('');
+        });
+    });
+</script>

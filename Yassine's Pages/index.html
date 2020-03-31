@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1>GESTINO</h1>
+        <p>la gestion du capital humain des entreprises</p>
+    </div>
+</div>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Gestino</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li ><a href="#">Home</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li class="active"><a href="#">Page 3</a></li>
+            <li><a href="search.html">Page 4</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<body>
+    <div class="table-responsive">
+        <table class="table" id="heroesTable">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Age</th>
+                    <th>Salaire(MAD)</th>
+                </tr>
+            </thead>
+            <tbody id="heroesBody"></tbody>
+        </table>
+    </div>
+    <br><br><br>
+    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal"
+        data-whatever="@mdo">AJOUTER</button>
+
+
+    <form action="/" method="POST">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">AJOUTER un utilisateur</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Nom:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Prenom:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="name2">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Age:</label>
+                                <input type="number" class="form-control" id="recipient-name" name="age">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Salaire:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="slr">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+
+
+
+
+
+    <script>
+        $.getJSON('data.json', function (data) {
+            /* console.log(data); */
+            $(data.companies).each(function (i, hero) {
+                $('#heroesBody').append($("<tr>")
+                    .append($("<td>").append(hero.name))
+                    .append($("<td>").append(hero.name2))
+                    .append($("<td>").append(hero.age))
+                    .append($("<td>").append(hero.slr)));
+            });
+        })
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+   
+
+</body>
+
+</html>
