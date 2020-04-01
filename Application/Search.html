@@ -62,18 +62,39 @@
 
 <script>
     $(document).ready(function () {
-        $.ajaxSetup({
-            cache: false
-        });
+
+     
         $('#search').keyup(function () {
             $('#result').html('');
             $('#state').val('');
             var searchField = $('#search').val();
             var expression = new RegExp(searchField, "i");
-            $.getJSON('data.json', function (data) {
-                $.each(data.companies, function (key, value) {
-                    if (value.name.search(expression) != -1 || value.name2.search(
-                            expression) != -1) {
+            // $.getJSON('data.json', function (data) {
+            //     $.each(data.companies, function (key, value) {
+
+            //         if (value.name.search(expression) != -1 || value.name2.search(
+            //                 expression) != -1) {
+            //             $('#result').append(
+            //                 '<li class="list-group-item link-class">' +
+            //                 value.name + ' | <span class="text-muted">' + value
+            //                 .name2 + ' | <span class="text-muted">' + value
+            //                 .age +' | <span class="text-muted">' + value
+            //                     .slr + '</span></li>');
+            //         }
+            //     });
+            // });
+
+            $.ajax({
+        method : 'GET',
+        url:'http://localhost:3000/userss',
+        dataType: 'json'
+    }).done(function(data){
+        console.log(data);
+        $.map(data.companies, function(post ,i){
+            $.each(data.companies, function (key, value) {
+
+
+            if (value.name.search(expression) != -1 || value.name2.search(expression) != -1) {
                         $('#result').append(
                             '<li class="list-group-item link-class">' +
                             value.name + ' | <span class="text-muted">' + value
@@ -81,8 +102,17 @@
                             .age +' | <span class="text-muted">' + value
                                 .slr + '</span></li>');
                     }
-                });
-            });
+            
+                
+        })
+    })
+            // console.log(post.companyName);
+
+
+    });
+
+
+
         });
 
         $('#result').on('click', 'li', function () {

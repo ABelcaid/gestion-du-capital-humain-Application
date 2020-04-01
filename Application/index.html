@@ -98,16 +98,38 @@
 
 
     <script>
-        $.getJSON('data.json', function (data) {
-            /* console.log(data); */
-            $(data.companies).each(function (i, hero) {
-                $('#heroesBody').append($("<tr>")
-                    .append($("<td>").append(hero.name))
-                    .append($("<td>").append(hero.name2))
-                    .append($("<td>").append(hero.age))
-                    .append($("<td>").append(hero.slr)));
-            });
+        // $.getJSON('data.json', function (data) {
+        //     /* console.log(data); */
+        //     $(data.companies).each(function (i, hero) {
+        //         $('#heroesBody').append($("<tr>")
+        //             .append($("<td>").append(hero.name))
+        //             .append($("<td>").append(hero.name2))
+        //             .append($("<td>").append(hero.age))
+        //             .append($("<td>").append(hero.slr)));
+
+        //     });
+        // })
+
+
+        $.ajax({
+        method : 'GET',
+        url:'http://localhost:3000/userss',
+        dataType: 'json'
+    }).done(function(data){
+        console.log(data);
+        $.map(data.companies, function(post ,i){
+            $('#heroesBody').append($("<tr>")
+                    .append($("<td>").append(post.name))
+                    .append($("<td>").append(post.name2))
+                    .append($("<td>").append(post.age))
+                    .append($("<td>").append(post.slr)));
+
         })
+            // console.log(post.companyName);
+
+
+    });
+
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">

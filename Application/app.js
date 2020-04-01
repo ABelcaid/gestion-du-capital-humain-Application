@@ -88,6 +88,23 @@ fs.readFile('./users.json', 'utf-8', function(err, data) {
 });
     
 });
+
+app.get('/userss',function(req, res){
+
+    fs.readFile('./data.json', 'utf-8', function(err, data) {
+        if (err) throw err;
+    
+        var arrayOfObjects = JSON.parse(data);
+      
+        res.send(arrayOfObjects);
+        console.log(arrayOfObjects);
+        
+    });
+})
+
+
+
+
 // ---------------------------------------------
 // Register validation  ------------------------
 app.post('/',function(req, res){
@@ -120,6 +137,15 @@ fs.readFile('./users.json', 'utf-8', function(err, data) {
     
 })
 // --------------------------------------------
+
+
+
+
+
+
+    
+
+
 
 
 app.listen('3000',function(){
