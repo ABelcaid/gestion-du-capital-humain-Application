@@ -1,16 +1,17 @@
 /*jshint esversion: 6 */
 
 const express = require('express');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
 const fs = require('fs');
+const uuid = require('uuid');
 const path = require('path');
 
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
     res.sendFile(__dirname + "/login.html");
@@ -22,6 +23,38 @@ app.get('/register', function(req, res){
 app.get('/Salaire', function(req, res){
     res.sendFile(__dirname + "/index.html");
 });
+app.get('/contactus', function (req, res) {
+    res.sendFile(__dirname + "/formpage.html");
+});
+
+app.post('/contactus', function (req, res) {
+    var message = req.body.message;
+    var name = req.body.name;
+    var email = req.body.email;
+    
+
+
+    fs.readFile('contactus.json', 'utf-8', function (err, data) {
+        if (err) throw err;
+
+        var arrayOfObjects = JSON.parse(data);
+        arrayOfObjects.companies.push({
+            message: message,
+            name: name,
+            email: email,
+        });
+
+        console.log(arrayOfObjects);
+
+        fs.writeFile('contactus.json', JSON.stringify(arrayOfObjects), 'utf-8', function (err) {
+            if (err) throw err;
+            console.log('Done!');
+            res.sendFile(__dirname + "/formpage.html");
+
+        });
+    });
+
+})
 
 app.post('/Salaire',function(req, res){
     var name = req.body.name;
@@ -35,6 +68,7 @@ fs.readFile('data.json', 'utf-8', function (err, data) {
 
 	var arrayOfObjects = JSON.parse(data);
 	arrayOfObjects.companies.push({
+        matricule : uuid.v4(),
 		name: name,
         name2: name2,
         age: age,
@@ -99,6 +133,18 @@ app.get('/userss',function(req, res){
         res.send(arrayOfObjects);
         console.log(arrayOfObjects);
         
+    });
+})
+app.get('/contactusdata', function (req, res) {
+
+    fs.readFile('./contactus.json', 'utf-8', function (err, data) {
+        if (err) throw err;
+
+        var arrayOfObjects = JSON.parse(data);
+
+        res.send(arrayOfObjects);
+        console.log(arrayOfObjects);
+
     });
 })
 
