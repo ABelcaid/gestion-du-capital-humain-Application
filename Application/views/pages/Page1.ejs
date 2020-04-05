@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <title>Page1</title>
+    <title>Entreprise</title>
 </head>
 <body>
 
@@ -33,16 +33,17 @@
     <div class="container mt-40">
         <h2 class="text-center">Entreprises</h2>
         <section class="row mt-30">
-            <%for(var i of entreprise){%>
+            <%if(list){%>
+            <%for(var i of list){%>
             <div class="col-sm-12 col-md-4">
                     <div class="box20 blue">
                     <img src="img/OCP.png" alt="OCP">
                         <h3 class="title" id="title"><%=i.nom%></h3>
                         <div id="dep">
-                            <%for(var j of i.Département){%>
+                            <%for(var j of i.Departement){%>
                                 <div class="childs" id="child1">
-                                   <h1> Nom : <span> <%=j.Nom%> </span></h1> 
-                                   <p> Chef Département : <span> <%=j.chef_département%> </span></p>
+                                   <h1><a href="/department/?entId=<%=i.id%>&depId=<%=j.id%>">Nom : <span> <%=j.Nom%> </a></span></h1> 
+                                   <p> Chef Département : <span> <%=j.chef_departement%> </span></p>
                                    <p> description : <span> <%=j.description%> </span></p> 
                                 </div>
                                 <%}%>
@@ -50,6 +51,7 @@
                             </div>
                     </div>
             </div>
+                <%}%>
                 <%}%>
         </section>
         <div id="dbutton"><button class="btn btn-primary"  id="info"> Show departement </button></div>
@@ -68,7 +70,7 @@
                         <form action="/d" method="POST">
                             <input type="text" id="h3h" name="entreprise" placeholder="enteprise"><br>
                             <input type="text" name="Nom" placeholder="Nom">*<br>
-                            <input type="text" name="chef_département" placeholder="chef_département">* <br>
+                            <input type="text" name="chef_departement" placeholder="chef_departement">* <br>
                             <input type="text" name="description" placeholder="description">* <br>
                             <button id="dd1" class="btn btn-info" onclick="this.style.backgroundColor='green'"> Add departement</button>
                           </form>
@@ -99,7 +101,7 @@
                 <span>*required</span><br>
                 <h2> Département</h2>
                 <input type="text" name="Nom" placeholder="Nom" id="inputs-size">*<br>
-                <input type="text" name="chef_département" placeholder="chef_département" id="inputs-size">* <br>
+                <input type="text" name="chef_departement" placeholder="chef_departement" id="inputs-size">* <br>
                 <input type="text" name="description" placeholder="description" id="inputs-size">* <br>
                 <button id="btn-company">create new company</button>
               </form>

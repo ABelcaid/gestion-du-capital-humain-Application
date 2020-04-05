@@ -1,10 +1,16 @@
-var express= require('express');
+/*jshint esversion: 6 */
 
-var body_parser= require('body-parser');
+const express= require('express');
+const uuid = require('uuid');
+const body_parser= require('body-parser');
+const fs= require('fs');
+const path = require('path');
 
-var app = express();
 
+const app = express();
 app.use(express.static('./tous'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.set('view engine','ejs');
 
@@ -12,17 +18,15 @@ app.use(body_parser.urlencoded({extended:false}));
 
 app.use(body_parser.json());
 
-var fs= require('fs');
 
-var list=[];
+let list=[];
+let currentDepatment = {};
+
 
 app.get('/entreprise',(req,resp)=>{
-  var wd=fs.readFileSync('./data/Entreprise.json');
+  var wd=fs.readFileSync('Entreprise.json');
 list=JSON.parse(wd);
-
-
-resp.render('pages/Page1',{entreprise:list});
-
+resp.render('pages/Page1',{list});
 });
 app.post('/dep',function(req,resp){
     console.log(req.body);
@@ -33,279 +37,239 @@ app.post('/d',(req,resp)=>{
     console.log(req.body.entreprise);
 for(var i in list){
     if(list[i].nom===req.body.entreprise){
-    list[i].Département.push({"Nom":req.body.Nom,"chef_département":req.body.chef_département,"description":req.body.description});
+    list[i].Departement.push({
+        "Nom":req.body.Nom,
+    "chef_departement":req.body.chef_departement,
+    "description":req.body.description,
+});
 }
 }
-fs.writeFile('./data/Entreprise.json',JSON.stringify(list),(err)=>{
+        //console.log('list' +JSON.stringify(list));
+fs.writeFile('Entreprise.json',JSON.stringify(list),(err)=>{
     console.log(err);
 });
-resp.render('pages/Page1',{entreprise:list});
+resp.render('pages/Page1',{list});
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Ajouter Entreprise  //
 app.post('/entre',(req,resp)=>{
-for(var i in list){
-    if(list[i].nom===req.body.nom){
-        console.log('hello' + list[i].nom + "=" + req.body.nom);
-        return list.push();
-    }else{
-    var t={"nom":req.body.nom,"locals":req.body.locals,"descriptions":req.body.descriptions,
-    Département:[{
+    var t={
+    "id":list.length+1,
+    "nom":req.body.nom,
+    "locals":req.body.locals,
+    "descriptions":req.body.descriptions,
+    "Departement":[{
+        "id" : uuid.v4(),
     "Nom":req.body.Nom,
-    "chef_département":req.body.chef_département,
+    "chef_departement":req.body.chef_departement,
     "description":req.body.description
-             }]
+    }],
+    "employees" : []
+
             };
-    }
-}
 list.push(t);
-fs.writeFile('./data/Entreprise.json',JSON.stringify(list),(err)=>{
+fs.writeFile('Entreprise.json',JSON.stringify(list,null,5),(err)=>{
     console.log(err);
 });
-resp.render('pages/Page1',{entreprise:list});
+resp.render('pages/Page1',{list});
 });
-app.listen(3320);
 
+// ------------------login page -------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-// // ------------------------------------------------------------------------------------------- hennnna 
-// /*jshint esversion: 6 */
-
-// const express = require('express');
-// const bodyParser = require('body-parser')
-// const fs = require('fs');
-// const uuid = require('uuid');
-// const path = require('path');
-
-
-// const app = express();
-// app.use(bodyParser.urlencoded({extended: true}));
-
-
-// app.use(express.static(path.join(__dirname, 'public')));
-
-// app.get('/', function(req, res){
-//     res.sendFile(__dirname + "/login.html");
-// });
-// app.get('/register', function(req, res){
-//     res.sendFile(__dirname + "/register.html");
-// });
-
-// app.get('/Salaire', function(req, res){
-//     res.sendFile(__dirname + "/index.html");
-// });
-// app.get('/contactus', function (req, res) {
-//     res.sendFile(__dirname + "/formpage.html");
-// });
-
-// app.post('/contactus', function (req, res) {
-//     var message = req.body.message;
-//     var name = req.body.name;
-//     var email = req.body.email;
-    
-
-
-//     fs.readFile('contactus.json', 'utf-8', function (err, data) {
-//         if (err) throw err;
-
-//         var arrayOfObjects = JSON.parse(data);
-//         arrayOfObjects.companies.push({
-//             message: message,
-//             name: name,
-//             email: email,
-//         });
-
-//         console.log(arrayOfObjects);
-
-//         fs.writeFile('contactus.json', JSON.stringify(arrayOfObjects), 'utf-8', function (err) {
-//             if (err) throw err;
-//             console.log('Done!');
-//             res.sendFile(__dirname + "/formpage.html");
-
-//         });
-//     });
-
-// })
-
-// app.post('/Salaire',function(req, res){
-//     var name = req.body.name;
-//     var name2 = req.body.name2;
-//     var age = req.body.age;
-//     var slr = req.body.slr;
-
-
-// fs.readFile('data.json', 'utf-8', function (err, data) {
-// 	if (err) throw err;
-
-// 	var arrayOfObjects = JSON.parse(data);
-// 	arrayOfObjects.companies.push({
-//         matricule : uuid.v4(),
-// 		name: name,
-//         name2: name2,
-//         age: age,
-//         slr: slr
-// 	});
-
-//     console.log(arrayOfObjects);
-    
-//     fs.writeFile('data.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
-//         if (err) throw err;
-//         console.log('Done!');
-//         res.sendFile(__dirname + "/index.html");
-  
-//     });
-// });
-    
-// });
-
-// app.use("/", express.static(__dirname + "/"));
-
+app.get('/', function(req, res){
+    res.sendFile(__dirname + "/singin.html");
+});
+app.get('/register', function(req, res){
+    res.sendFile(__dirname + "/signup.html");
+});
 
 
 // // Register validation  ------------------------
-// app.post('/register',function(req, res){
-//     var name = req.body.name;
-//     var mail = req.body.mail;
-//     var password = req.body.password;
-//     var confirPassword = req.body.confirPassword;
+app.post('/register',function(req, res){
+    var name = req.body.name;
+    var mail = req.body.mail;
+    var password = req.body.password;
+    var confirPassword = req.body.confirPassword;
 
 
-// fs.readFile('./users.json', 'utf-8', function(err, data) {
-// 	if (err) throw err
+fs.readFile('./users.json', 'utf-8', function(err, data) {
+	if (err) throw err;
 
-// 	var arrayOfObjects = JSON.parse(data);
-// 	arrayOfObjects.push({
-// 		name: name,
-//         mail: mail,
-//         password : password,
-//         confirPassword : confirPassword
-// 	});
+	var arrayOfObjects = JSON.parse(data);
+	arrayOfObjects.push({
+		name: name,
+        mail: mail,
+        password : password,
+        confirPassword : confirPassword
+	});
 
-//     // console.log(arrayOfObjects);
-    
-//     fs.writeFile('./users.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
-//         if (err) throw err;
-//         console.log('Done!');
-//         res.sendFile(__dirname + "/page1.html");
+    // console.log(arrayOfObjects);
 
-        
-//     });
-// });
-    
-// });
-
-// app.get('/userss',function(req, res){
-
-//     fs.readFile('./data.json', 'utf-8', function(err, data) {
-//         if (err) throw err;
-    
-//         var arrayOfObjects = JSON.parse(data);
-      
-//         res.send(arrayOfObjects);
-//         console.log(arrayOfObjects);
-        
-//     });
-// })
-// app.get('/contactusdata', function (req, res) {
-
-//     fs.readFile('./contactus.json', 'utf-8', function (err, data) {
-//         if (err) throw err;
-
-//         var arrayOfObjects = JSON.parse(data);
-
-//         res.send(arrayOfObjects);
-//         console.log(arrayOfObjects);
-
-//     });
-// })
+    fs.writeFile('./users.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+        if (err) throw err;
+        console.log('Done!');
+        // res.sendFile(__dirname + "/page1.html");
+        res.render('pages/Page1',{list});
 
 
+
+    });
+});
+
+});
 
 
 // // ---------------------------------------------
-// // Register validation  ------------------------
-// app.post('/',function(req, res){
-//     var name = req.body.name;
-//     var password = req.body.password;
+// // Register login  ------------------------
+app.post('/',function(req, res){
+    var name = req.body.name;
+    var password = req.body.password;
 
 
-// fs.readFile('./users.json', 'utf-8', function(err, data) {
-// 	if (err) throw err
+fs.readFile('./users.json', 'utf-8', function(err, data) {
+	if (err) throw err;
 
-// 	var arrayOfObjects = JSON.parse(data);
-	
+	var arrayOfObjects = JSON.parse(data);
 
-//     console.log(arrayOfObjects);
 
-//     arrayOfObjects.forEach(element => {
-//         if (name === element.name && password === element.password ) {
+    console.log(arrayOfObjects);
 
-//          res.sendFile(__dirname + "/page1.html");
+    arrayOfObjects.forEach(element => {
+        if (name === element.name && password === element.password ) {
 
-//         }else
-//         res.sendFile(__dirname + "/404.html");
+        //  res.sendFile(__dirname + "/page1.html");
+        res.render('pages/Page1',{list});
 
-        
-    
-        
-//     });
-    
-// });
-    
-// })
+
+        }else
+        res.sendFile(__dirname + "/404.html");
+
+
+
+
+    });
+
+});
+
+});
 // // --------------------------------------------
+//get the departement info
+app.get('/departement', (req, res) => {
+
+    fs.readFile("Entreprise.json", (err, data) => {
+        
+    if (err) {
+        return console.error(err);
+    } else {
+        const entreprices = JSON.parse(data);
+        for (let e = 0; e < entreprices.length; e++) {
+            for (let d = 0; d < entreprices[e].Departement.length; d++) {
+                if (entreprices[e].id === +req.query.entId &&
+                    entreprices[e].Departement[d].id === +req.query.depId) {
+
+                    currentDepatment = entreprices[e].Departement[d];
+                    currentDepatment.entrepriceID = entreprices[e].id;
+                    currentDepatment.entrepriceName = entreprices[e].nom;
+
+                    res.redirect('/page2.html');
+                    return;
+                }
+            }
+        }
+    }
 
 
 
+        
+    });
+});
 
 
 
+app.get('/api/departement/', (req, res) => {
+    res.send(currentDepatment);
+});
+
+app.get('/Salaire', function(req, res){
+    res.sendFile(__dirname + "/index.html");
+});
+app.get('/contactus', function (req, res) {
+    res.sendFile(__dirname + "/formpage.html");
+});
+
+app.post('/contactus', function (req, res) {
+    var message = req.body.message;
+    var name = req.body.name;
+    var email = req.body.email;
     
 
 
+    fs.readFile('contactus.json', 'utf-8', function (err, data) {
+        if (err) throw err;
+
+        var arrayOfObjects = JSON.parse(data);
+        arrayOfObjects.companies.push({
+            message: message,
+            name: name,
+            email: email,
+        });
+
+        console.log(arrayOfObjects);
+
+        fs.writeFile('contactus.json', JSON.stringify(arrayOfObjects), 'utf-8', function (err) {
+            if (err) throw err;
+            console.log('Done!');
+            res.sendFile(__dirname + "/formpage.html");
+
+        });
+    });
+
+})
+
+app.post('/Salaire',function(req, res){
+    var name = req.body.name;
+    var name2 = req.body.name2;
+    var age = req.body.age;
+    var slr = req.body.slr;
 
 
-// app.listen('3000',function(){
-//     console.log("Server listning on port 3000...");
+fs.readFile('data.json', 'utf-8', function (err, data) {
+	if (err) throw err;
+
+	var arrayOfObjects = JSON.parse(data);
+	arrayOfObjects.companies.push({
+        matricule : uuid.v4(),
+		name: name,
+        name2: name2,
+        age: age,
+        slr: slr
+	});
+
+    console.log(arrayOfObjects);
     
-// });
-// // --------------------------------------------------------------------------------------------
+    fs.writeFile('data.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+        if (err) throw err;
+        console.log('Done!');
+        res.sendFile(__dirname + "/index.html");
+  
+    });
+});
+    
+});
+
+
+
+
+
+
+
+
+
+
+
+
+app.listen(3000,function(){
+    // run server on http://localhost:3000/
+    console.log("Server listing on port 3000...");
+});
+
+
