@@ -182,14 +182,14 @@ body {
     
             <h1><a href="#">Gest<span>ino</span></a></h1>
     
+         
             <nav>
-                <a href="Page1.html">Home</a>
-                <a href="#" >Entreprise</a>
-                <a href="#">Departement</a>
-                <a href="index.html"class="selected">Salarie</a>
-                <a href="Search.html">search</a>
-                <a href="formpage.html" >Need Help!</a>
-                <a href="login.html" class="btn btn-info btn-lg">
+                <!-- <a href="http://localhost:8080/">Home</a> -->
+                <a href="http://localhost:8080/entreprise" >Entreprise</a>
+                <!-- <a href="http://localhost:8080/Salarie">Salarie</a> -->
+                <a href="http://localhost:8080/Search"class="selected">search</a>
+                <a href="http://localhost:8080/contactus" >Need Help!</a>
+                <a href="http://localhost:8080/" class="btn btn-info btn-lg">
                     <span class="glyphicon glyphicon-log-out"></span> Log out
                   </a>
             </nav>
@@ -278,7 +278,7 @@ body {
 
         $.ajax({
         method : 'GET',
-        url:'http://localhost:3000/userss',
+        url:'http://localhost:8080/userss',
         dataType: 'json'
     }).done(function(data){
         console.log(data);

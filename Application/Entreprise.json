@@ -1,10 +1,44 @@
 [
-     {
-          "id": 1,
-          "nom": "BELCAID2",
-          "locals": "hHh",
-          "descriptions": "ccc",
-          "Departement": [],
-          "employees": []
-     }
+    {
+        "id": 1,
+        "nom": "BELCAID",
+        "locals": "hHh",
+        "descriptions": "aqwxsz",
+        "Departement": [
+            {
+                "id": "29c083aa-0763-477e-b2e7-adf8f16899a0",
+                "nom": "dep2",
+                "chef_departement": "aqw",
+                "description": "zsxcde"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "nom": "ana",
+        "locals": "hHh",
+        "descriptions": "aqwxsz",
+        "Departement": [
+            {
+                "id": "55ab3b16-a674-46c0-a94d-9378ba45c140",
+                "nom": "aqw",
+                "chef_departement": "sd",
+                "description": "dssd"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "nom": "BELCAID",
+        "locals": "hHh",
+        "descriptions": "vnbc",
+        "Departement": [
+            {
+                "id": "c49a1020-2cd2-4fe3-9fd5-7d77615e77ba",
+                "nom": "bcbc",
+                "chef_departement": "cbc",
+                "description": "cb"
+            }
+        ]
+    }
 ]

@@ -228,6 +228,14 @@ p{
 .descridep{
   padding: 1% 10% 1% 10%;
   }
+  .show{
+    text-decoration: none;
+    color: #F8FAFD;
+  }
+  .show:hover{
+    text-decoration: none;
+    color: #F8FAFD;
+  }
 
 
 
