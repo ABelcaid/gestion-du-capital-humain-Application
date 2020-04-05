@@ -15,7 +15,7 @@
 thead > tr{
     font-size: 24px;
     color: black;
-} 
+}
 * {box-sizing: border-box;}
 
 
@@ -31,7 +31,7 @@ thead > tr{
   text-align: center;
   padding: 12px;
   text-decoration: none;
-  font-size: 18px; 
+  font-size: 18px;
   line-height: 25px;
   border-radius: 4px;
 }
@@ -116,6 +116,15 @@ thead > tr{
 	margin-top: 118px;
 }
 
+.global{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
 /* Making the header responsive. */
 
 @media all and (max-width: 600px) {
@@ -147,7 +156,7 @@ thead > tr{
 body {
 	margin:0;
     padding:0;
-    
+
 }
 
 @media screen and (max-width: 500px) {
@@ -156,26 +165,26 @@ body {
     display: block;
     text-align: left;
   }
-  
+
   .header-right {
     float: none;
   }
-            
+
 #form_container
 {
 	padding:15px 15px;
 	margin-top:15px;
-	background: rgba(0,0,0,0.5);	
+	background: rgba(0,0,0,0.5);
 	color:#fff;
 }
-.upload-btn-wrapper 
+.upload-btn-wrapper
 {
   position: relative;
   overflow: hidden;
   display: inline-block;
 }
 
-.upload-btn-wrapper input[type=file] 
+.upload-btn-wrapper input[type=file]
 {
   font-size: 100px;
   position: absolute;
@@ -187,16 +196,16 @@ body {
 
 
         </style>
-        
-        
+
+
     </head>
     <body >
         <header class="header-basic-light">
 
             <div class="header-limiter">
-        
+
                 <h1><a href="#">Gest<span>ino</span></a></h1>
-        
+
                 <nav>
                     <a href="Page1.html">Home</a>
                     <a href="#" >Entreprise</a>
@@ -209,42 +218,52 @@ body {
                       </a>
                 </nav>
             </div>
-        
+
         </header>
-            
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 " id="form_container">
-                            <h2>Contact Us</h2> 
-                            <p> Please send your message below. We will get back to you at the earliest! </p>
-                            <form action="/contactus" method="POST">
-                                <div class="row">
-                                    <div class="col-sm-12 form-group">
-                                        <label for="message"> Message:</label>
-                                        <textarea class="form-control" type="textarea" id="message" name="message" maxlength="6000" rows="7"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 form-group">
-                                        <label for="name"> Your Name:</label>
-                                        <input type="text" class="form-control" id="name" name="name" required>
-                                    </div>
-                                    <div class="col-sm-6 form-group">
-                                        <label for="email"> Email:</label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 form-group">
-                                        <button type="submit" class="btn btn-lg btn-default pull-right" >Send &rarr;</button>
-                                    </div>
-                                </div>
-                            </form>
-                            <div id="success_message" style="width:100%; height:100%; display:none; "> <h3>Posted your message successfully!</h3> </div>
-                            <div id="error_message" style="width:100%; height:100%; display:none; "> <h3>Error</h3> Sorry there was an error sending your form. </div>
-                        </div>
-                    </div>
-                </div>
+
+
+        <div class="global">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-6 " id="form_container">
+                      <h2>Contact Us</h2>
+                      <p> Please send your message below. We will get back to you at the earliest! </p>
+                      <form action="/contactus" method="POST">
+                          <div class="row">
+                              <div class="col-sm-12 form-group">
+                                  <label for="message"> Message:</label>
+                                  <textarea class="form-control" type="textarea" id="message" name="message" maxlength="6000" rows="7"></textarea>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-6 form-group">
+                                  <label for="name"> Your Name:</label>
+                                  <input type="text" class="form-control" id="name" name="name" required>
+                              </div>
+                              <div class="col-sm-6 form-group">
+                                  <label for="email"> Email:</label>
+                                  <input type="email" class="form-control" id="email" name="email" required>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-12 form-group">
+                                  <button type="submit" class="btn btn-lg btn-default pull-right" >Send &rarr;</button>
+                              </div>
+                          </div>
+                      </form>
+                      <div id="success_message" style="width:100%; height:100%; display:none; "> <h3>Posted your message successfully!</h3> </div>
+                      <div id="error_message" style="width:100%; height:100%; display:none; "> <h3>Error</h3> Sorry there was an error sending your form. </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="img">
+            <img src="/Img/contact.jpg" alt="">
+          </div>
+
+        </div>
+
+
             </body>
-                  
+
 </html>

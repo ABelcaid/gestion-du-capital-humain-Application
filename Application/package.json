@@ -1,5 +1,5 @@
 {
-  "name": "expresstest",
+  "name": "brief-6",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -10,8 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "ejs-lint": "^1.0.1",
     "express": "^4.17.1",
-    "nodemon": "^2.0.2",
+    "lodash": "^4.17.15",
     "uuid": "^7.0.3"
   }
 }

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Entreprise</title>
+</head>
+<body>
+
+    <!-- navbar  -->
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">Logo</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-menu-sm">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+         <div class="collapse navbar-collapse" id="navbar-menu-sm">
+         <ul class="navbar-nav ml-auto">
+             <li class="nav-item">
+                 <a href="#" class="nav-link">Login</a> 
+             </li>
+             <li class="nav-item">
+                <a href="#" class="nav-link">Inscription</a>
+            </li>
+          </ul>
+         </div>
+    </nav>
+
+    <!-- Liste des Entreprises -->
+
+    <div class="container mt-40">
+        <h2 class="text-center">Entreprises</h2>
+        <section class="row mt-30">
+            <%if(list){%>
+            <%for(var i of list){%>
+            <div class="col-sm-12 col-md-4">
+                    <div class="box20 blue">
+                    <img src="img/OCP.png" alt="OCP">
+                        <h3 class="title" id="title"><%=i.nom%></h3>
+                        <div id="dep">
+                            <%for(var j of i.Departement){%>
+                                <div class="childs" id="child1">
+                                   <h1><a href="/department/?entId=<%=i.id%>&depId=<%=j.id%>">Nom : <span> <%=j.Nom%> </a></span></h1> 
+                                   <p> Chef Département : <span> <%=j.chef_departement%> </span></p>
+                                   <p> description : <span> <%=j.description%> </span></p> 
+                                </div>
+                                <%}%>
+                                <p><a type="button" class="button" href="#" data-toggle="modal" data-target="#mymodal" id="modletarggete" onclick="document.getElementById('h3h').value='<%=i.nom%>'" > Add departement </a></p>
+                            </div>
+                    </div>
+            </div>
+                <%}%>
+                <%}%>
+        </section>
+        <div id="dbutton"><button class="btn btn-primary"  id="info"> Show departement </button></div>
+    </div>
+    <div class="blank"></div>
+    
+    <div class="blank"></div>
+            <div class="modal fade" id="mymodal">
+                <div class="modal-dialog modal-lg">
+                 <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 id='h1h'></h1>
+                    </div>
+                    <div class="modal-Body">
+                        <div class="child" id="émdiv">
+                        <form action="/d" method="POST">
+                            <input type="text" id="h3h" name="entreprise" placeholder="enteprise"><br>
+                            <input type="text" name="Nom" placeholder="Nom">*<br>
+                            <input type="text" name="chef_departement" placeholder="chef_departement">* <br>
+                            <input type="text" name="description" placeholder="description">* <br>
+                            <button id="dd1" class="btn btn-info" onclick="this.style.backgroundColor='green'"> Add departement</button>
+                          </form>
+                          </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">ADD</button>
+                   
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="blank-div"></div>
+            <div style="text-align: center;"><button type="button"  id="company" class="btn btn-primary" id="fixed">Add Entreprise</button></div>
+            <div class="blank-div"></div>
+            <div id="company-new">
+            <form action="/entre" method="POST">
+                <input type="text" placeholder="company name" name="nom" id="inputs-size"><br>
+                <span>*required</span><br>
+                <input type="text" placeholder="company location" name="locals" id="inputs-size"><br>
+                <span>*required</span><br>
+                <textarea  id="inputs-size" name="descriptions" placeholder="company description"></textarea><br>
+                <span>*required</span><br>
+                <h2> Département</h2>
+                <input type="text" name="Nom" placeholder="Nom" id="inputs-size">*<br>
+                <input type="text" name="chef_departement" placeholder="chef_departement" id="inputs-size">* <br>
+                <input type="text" name="description" placeholder="description" id="inputs-size">* <br>
+                <button id="btn-company">create new company</button>
+              </form>
+            </div>
+            <div class="blank-div"></div>
+    </div>
+    <div class="blank-div"></div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script src="./javascript/page1.js">
+        </script>
+</body>
+</html>
