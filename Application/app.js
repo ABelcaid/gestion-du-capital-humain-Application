@@ -89,7 +89,7 @@ fs.readFile('data.json', 'utf-8', function (err, data) {
 
 	var arrayOfObjects = JSON.parse(data);
 	arrayOfObjects.companies.push({
-        matricule : uuid.v4(),
+        matricule : arrayOfObjects.companies.length +1,
 		name: name,
         name2: name2,
         age: age,
